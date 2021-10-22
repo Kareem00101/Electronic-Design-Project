@@ -1,0 +1,28 @@
+"GrayCounter.vhd"
+
+Entity description:
+a) clock is used to control when to control count_out
+b) reset is used to reset count_out to the gray equivalent of
+   the binary "000" 
+c) enable is used to control whether the counter functions or
+   not
+d) count_out is the output of the counter that gets 
+   incremented each rising edge of the clock at (enabled 
+   no reset condition)
+
+Architecture description:
+the gray counter depends on the binary counter where the
+gray value of a some decimal can be evaluated from the binary
+value using basic logic gates 
+where for the 3-bit signal count_out the MSB for gray is 
+the same as the MSB in the binary equivalent, and generally
+for the rest of the bits (other than the MSB) in gray
+can be evaluated as the bit at the 'j'th position in gray is
+equivalent to the xor of the 'j'th and the 'j+1'th bit in 
+the binary
+thus using the pre-defined entity binaryCounter we implement
+the gray counter based on conversion from binary to gray 
+according to previously illustrated technique by copying 
+the MSB and looping over the rest of the bit XOR-ing the 
+'j'th and the 'j+1'th in the binary and assigning the result
+of XOR-ing them to the 'j'th bit in count_out

@@ -1,0 +1,34 @@
+"RoundRobinScheduler.vhd"
+
+Entity description:
+a)
+- clock is used to sync the reading of the input and mapping 
+  it to dout 
+- reset is used to reset the RRscheduler and retunr to the 
+  idle state
+b)
+- din1 is an input port to be read and mapped to dout 
+  using clock
+- din2 is an input port to be read and mapped to dout 
+  using clock
+- din3 is an input port to be read and mapped to dout 
+  using clock
+- din4 is an input port to be read and mapped to dout 
+  using clock
+c) RR sends a read request to FIFO/RAM telling it it's 
+   read what's in that port so it should send next data
+d) dout is the output port where one of the inputs get mapped
+   to at rising edge of the clock synchoronusly
+
+Architecture description:
+the RoundRobin Scheduling is achieved using two concurrent 
+processes on that is sensitive to the clock and reset input 
+signals where when the reset is high the next state should
+be s_idle and when the clock is at its rising edge the 
+current state gets updated
+
+parallel to the previous process is another that assignes the
+next state signal the appropriate state based on the validity 
+of the input signals din'n' and the current state
+the process firstly checks the currentState for appropriate
+state transition 

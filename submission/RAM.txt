@@ -1,0 +1,30 @@
+"RAM.vhd"
+Entity description:
+a) d_in is the input vector where the ram extracts the 
+   the address from
+b)
+- wea is the enable that controls whether the ram can write the
+  address to ADDRA vector
+- rea is the enable that controls whether the ram can read the 
+  address from ADDRB vector
+c)
+- clka is the clock that controls when to write port A
+- clkb is the clock that controls when to read port B
+d)
+- ADDRA is the vector where the ram writes the address to
+- ADDRB is the vector from which the ram reads the address from
+e) d_out is the vector that gets assigned specific value when
+   rea signal is high and clkb at its rising edge
+
+Architecture description:
+the functionality of writing to the ram and reading from the
+ram is achieved using two processes one for writing and the 
+other for reading
+whenever clka changes we check whether the wea is high or not
+when wea is low then no write happens 
+when wea is high then d_in gets mapped to the vector at the
+address stored in ADDRA 
+whenever clkb changes we check whether the rea is high or not
+when rea is low then no read happens 
+when rea is high then the 8-bit vector stored at the address
+stored in ADDRB gets mapped to the d_out vector 

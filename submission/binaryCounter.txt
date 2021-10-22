@@ -1,0 +1,22 @@
+"binaryCounter.vhd"
+
+Entity description:
+a) 
+- clk is the clock that controls when to increment d_out
+- clear is used to set d_out to "000" 
+- enable is used to control whether the binary counter should
+  function or not
+b) d_out is the output of the counter that is incremented
+   whenever the clock is at its rising edge
+
+Architecture description:
+since clear has the highest priority to check; thus, whenever 
+any of the signals within the sensitivity list(clk,enable,clear)
+of ct process changes. we firstly check the status of the clear
+signal. 
+when clear signal is high, the d_out should be assigned a value
+of "000"
+while when clear signal is low, we check on the enable as 
+when the enable is low the counter should not function
+while when the enable is high, the counter should increment 
+d_out each rising edge of the clk

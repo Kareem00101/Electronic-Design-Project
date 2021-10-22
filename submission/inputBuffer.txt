@@ -1,0 +1,32 @@
+"InputBuffer.vhd"
+Entity description:
+a) the data_in is a vector indicating the bits
+equivalent to the packet.
+- data_in(7) is the parity check bit
+- data_in(6 downto 3) is the data to be sent
+- data_in(2 downto 0) is the address to
+  be sent to
+b)
+- clk is the clock signal that controls the 8-bit
+register
+- eclk controls the clock either enables the clock
+to affect the register or not 
+- reset is used to reset the data_out vector 
+c) data_out is a vector indicating the bits captured
+by the register at rising edge of the clock
+
+Architecture description:
+since the 8-bit register (input buffer)
+has asynchronous reset thus the reset has 
+highest priority to check 
+thus, if reset is high (reset = '1') then
+data_out is of high impedance 
+if reset is low then we check the second most 
+prior port which is the eclk(clock_en)
+at eclk low, the data_out is the same as its
+current value thus no need to assign the same 
+value to it again. hence, the important case is 
+where  the eclk high
+at the eclk high, we check on the clk for rising
+edge occurrence, at rising edge the data_in bits 
+gets mapped to the data_out pin 

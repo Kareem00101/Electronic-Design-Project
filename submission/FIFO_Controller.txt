@@ -1,0 +1,42 @@
+"FIFO_Controller.vhd"
+
+Entity description:
+a)
+- reset is used to reset the FIFO controller
+- rdclk is used to clock the read operation
+- wrclk is used to clock the write operation
+- r_req indicates that there is a request to read from FIFO 
+  queue
+- w_req indicates that there is a request to write to FIFO 
+  queue
+- write_valid indicates that write at the specified address is
+  valid 
+- read_valid indicates that read from the specified address is
+  valid
+- empty indicates whether the FIFO queue is empty or not
+- full indicates whether the FIFO queue is full or not
+- wr_ptr indicates the address to write to in the FIFO queue
+- rd_ptr indicates the address to read from in the FIFO queue
+
+Architecture description:
+the fifo controller depends on gray counter and gray to binary
+converter thus it depends on them to evaluate address
+the contorller regularly updates the full,empty,wr_ptr,rd_ptr,
+write_valid and read_valid signals
+
+when the rd_ptr vector has the same bit value in wr_ptr
+this indicates that the FIFO queue is empty
+if not then the FIFO queue is not empty
+
+when the rd_ptr vector has the same bit value as (wr_ptr + 1)
+this indicates that the FIFO queue is full
+if not then the FIFO queue is not full
+
+when there is a write request and the FIFO queue is not full
+the valid write indication bit (write_valid) becomes high
+if not both conditions are true then the write valid is low
+
+when there is a read request and the FIFO queue is not empty
+the valid read indication bit (read_valid) becomes high
+if not both conditions are true then the write valid is low 
+

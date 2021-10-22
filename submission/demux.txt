@@ -1,0 +1,52 @@
+"demux.vhd"
+
+Entity description:
+a) data_in is the bits captured by the input buffer
+module, it gets put into the demultiplexer in
+the switch fabric module in order to be routed
+to a specific FIFO queue in the following module
+(output queue and buffer)
+b) select_in is used as a selector to identify which
+output port to map the data_in bits to 
+c) enable which is used to control whether the
+de-multiplexer functions or not
+d) d'n'_out are output ports which map the output of
+the switch fabric module to the output to 'n'th 
+output queue
+e) wr_sel is used as a selector that enables the 
+'n'th FIFO to get enabled while others are disabled
+
+Architecture description:
+since the enable has the highest priority to check
+in this module. thus, at any change in data_in,
+select_in or enable ports we firstly check on 
+the enable signal
+at enable is low, the demultiplexer should not 
+function and not FIFO queue within the next module
+should be enabled thus wr_sel is assigned "0000"
+while at enable high, the de-multiplexer maps
+the data_in bus to the d'n'_out port based on the 
+select_in signal
+thus, the select_in controls which data_out port 
+gets the data_in signal mapped to 
+since select_in is of type std_logic_vector thus,
+the cases that select_in can be are:
+- select_in = "00"
+    to do: 
+    map data_in to d1_out 
+    enable the 1st FIFO queue
+- select_in = "01"
+    to do: 
+    map data_in to d2_out 
+    enable the 2nd FIFO queue
+- select_in = "10"
+    to do: 
+    map data_in to d3_out 
+    enable the 3rd FIFO queue
+- select_in = "11" 
+    to do: 
+    map data_in to d4_out 
+    enable the 4th FIFO queue
+- select_in = others
+    to do:
+    nothing

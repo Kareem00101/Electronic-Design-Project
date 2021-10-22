@@ -1,0 +1,13 @@
+"graytobinary.vhd"
+
+Entity description:
+a) G is the gray vector to be converted 
+b) bin is the binary vector to be evaluated 
+
+Architecture description:
+the MSB in gray vector is the same as that in the binary vector
+thus, it is mapped to the MSB of the binary vector as is
+since the binary and the gray vectors are of fixed number of
+bits thus the conversion is done by xor-ing the bit at index
+at hand (for simplicity let it be i) in binary vector with 
+the bit at 'i+1' in the gray vector

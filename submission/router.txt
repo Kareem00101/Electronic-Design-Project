@@ -1,0 +1,20 @@
+"router.vhd"
+
+Entity description:
+a) 
+- wclock is the clock the syncs the arrival at input ports
+- rst is used to reset the signal
+- rclock  is the clock the syncs the service at input ports
+b) datai'n' is the representation of the input signal
+c) wr'n' is an indicator of whether the packet is available 
+   or not 
+d) datao'n' is the representation of the output signal
+
+Architecture description:
+the router module represents the integration of all the 
+components (building blocks) that were previously implemented 
+into the "full" system view, where the overall functionality of
+routing the packets to the correct output port (based on the
+address in the last two bits in the input signal) is achieved by 
+connecting the input buffer,the demultiplexers, output queues
+and output buffers 

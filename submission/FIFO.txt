@@ -1,0 +1,27 @@
+"FIFo.vhd"
+
+Entity description:
+a)
+- reset is used to reset the FIFO queue
+- rclk is used to clock the read operation
+- wclk is used to clock the write operation
+- wreq indicates that there is a request to write to FIFO 
+  queue
+- rreq indicates that there is a request to read from FIFO 
+  queue
+b) datain is the vector indicating the data to be written to
+the FIFO 
+c) dataout is the vector indicating the data read from the FIFO
+d) 
+- empty indicates whether the FIFO queue is empty or not
+- full indicates whether the FIFO queue is full or not
+
+Architecture description:
+the FIFO depends on the RAM and the FIFO controller hence, the 
+instantiation of both components is best in order to reuse 
+previously implemented components
+
+the functionality required from FIFO is achieved using the
+memory (RAM) and the FIFO controller thus, mapping the ports 
+to appropriate signals in RAM and Controller gives off the 
+needed functionality
